@@ -1,0 +1,33 @@
+MINECRAFT DATAPACK ASSISTANT — RESOURCE PACK REFRESH WORKFLOW
+Planning snapshot: November 14, 2026
+
+OPEN AND REFRESH
+1. User selects a resource-pack directory through a supported folder picker.
+2. App reads its original directory structure and scans models, textures, parent models, and model-data mappings.
+3. App compares discovered models against its previously indexed entries.
+4. On manual Refresh Library, newly discovered models enter a guided organizer.
+5. Existing models keep their prior display names, folders, chapters and references.
+
+GUIDED ORGANIZER (WINDOWS FILE-COPY DIALOG INSPIRATION)
+- Show one newly found model at a time.
+- Display its original filename and a 3D model preview when renderable.
+- Allow a custom display name, destination visual folder, and chapter.
+- Save & Next; Skip; Skip All Remaining.
+- If the user leaves naming/organization untouched and saves, keep the original filename as the display name and put the model in Unorganized.
+- Allow 'Apply this folder and chapter to all remaining' to accelerate bulk imports. This applies organization, not necessarily renaming.
+- Skipped models should remain discoverable for later organization; the precise skip semantics are still to be finalized.
+- Warn about missing textures, parent models, or unresolved item/model-data mappings without rewriting source files.
+
+SAFETY AND PERFORMANCE
+- No automatic modification of physical resource-pack paths or files.
+- No continuous file watching required; refresh is manual.
+- Shared textures should be loaded once and reused where feasible.
+- Thumbnail caching/lazy loading is proposed to handle thousands of poses.
+- Browser permission may need renewal on reopening.
+- An app cannot access arbitrary local paths simply by typing them without user-granted access.
+
+OPEN QUESTIONS
+- Exact persistent storage mechanism and how multiple app windows share or isolate metadata.
+- Handling model files removed/renamed outside the app.
+- Whether custom thumbnails are supported beyond pre-existing model display images.
+- Detailed error/duplicate/conflict handling.

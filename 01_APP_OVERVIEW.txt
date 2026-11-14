@@ -1,0 +1,27 @@
+MINECRAFT DATAPACK ASSISTANT — APP OVERVIEW
+Planning snapshot: November 14, 2026
+Target: Minecraft Java Edition 1.21.1
+Status: Requirements discussion; not implemented.
+
+PURPOSE
+A computer-first HTML application for visually organizing existing Minecraft resource-pack models and generating Minecraft commands and individual .mcfunction files. It is not a resource-pack editor, a 3D modeling tool, or a full datapack assembler.
+
+CORE PRINCIPLES
+- One resource pack open per application window. Separate app windows may open different packs.
+- File > Open Resource Pack / Switch Resource Pack selects another pack.
+- Original resource-pack files and directories are read-only to the application: never rename, move, delete, or rewrite them.
+- Preserve the actual pack directory structure and namespace paths for resolving models, parent models, textures, and custom-model-data mappings.
+- Save the user's visual organization as separate application metadata, not by changing the pack.
+- One global/shared asset library is intended across animation projects; models are linked to their source resource pack and should not be duplicated in project files.
+- Projects contain scenes and reference shared assets. Scenes use a global timeline.
+- Export generated commands or individual .mcfunction files; user assembles the datapack.
+
+PROJECTS AND SCENES
+- Create, save, reopen and edit projects and their scenes.
+- Scene-specific timeline events can be regenerated as replacement .mcfunction files.
+- Each scene may have a start/end tick, while 'global timeline' remains the project's shared time base.
+- A project format such as JSON is proposed, not finalized.
+- A scene editor layout (spreadsheet vs visual timeline) has NOT been decided.
+
+SCOPE
+The asset library and command generation are planned. Further generator types and exact UI details will be decided in subsequent discussions.

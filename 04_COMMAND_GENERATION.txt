@@ -1,0 +1,57 @@
+MINECRAFT DATAPACK ASSISTANT — COMMAND GENERATION
+Planning snapshot: November 14, 2026
+Target: Minecraft Java Edition 1.21.1
+
+GOAL
+Choose a character/pose visually, assign a timeline tick, and generate ready-to-paste command-block commands or .mcfunction files without manually typing selectors and six-digit custom-model-data values.
+
+TIMELINE
+- Scoreboard objective: timeline.
+- Fake player: global.
+- Existing workflow increments 'global timeline' by 1 each game tick (normally 20 ticks/second), and can be paused.
+- Desired controls: start, pause, stop. Pause freezes the current tick; stop pauses and resets to 0.
+- A #playing score in the timeline objective is a proposed simple play-state flag.
+- Generated tick function is invoked once per game tick by the datapack or a command block.
+
+EXAMPLE COMMANDS (no leading slash; paste into command blocks)
+One-time setup:
+scoreboard objectives add timeline dummy
+scoreboard players set global timeline 0
+scoreboard players set #playing timeline 0
+
+start.mcfunction:
+scoreboard players set #playing timeline 1
+
+pause.mcfunction:
+scoreboard players set #playing timeline 0
+
+stop.mcfunction:
+scoreboard players set #playing timeline 0
+scoreboard players set global timeline 0
+
+tick.mcfunction:
+execute if score #playing timeline matches 1 run scoreboard players add global timeline 1
+
+Example pose swap at tick 240 (example tag and six-digit value):
+execute if score global timeline matches 240 run item replace entity @e[type=minecraft:armor_stand,tag=ender,limit=1] armor.head with minecraft:wooden_hoe[minecraft:custom_model_data=123456] 1
+
+IMPORTANT VERSION NOTE
+Minecraft Java 1.21.1 uses item components. For 1.21.1 the custom_model_data component is an integer, as shown above. The floats-based custom_model_data structure belongs to newer Minecraft versions and must NOT be generated for 1.21.1.
+
+CHARACTER ANIMATION METHODS
+1. Modular characters: multiple armor stands carry custom-model parts in equipment slots; change poses/positions/equipment per timeline keyframe.
+2. Full-body pose swap: one armor stand displays an entire pose as a custom item model, swapped via item replace with the correct base item and custom_model_data.
+- Different poses may use different base items; the app must track them invisibly under each model.
+- Model library selection should fill item ID and custom model data automatically.
+
+CAMERA
+- Smooth cinematic camera movement, unlike intentionally jittery stop-motion character poses.
+- Camera is an invisible armor stand; player teleports to it; camera movement uses local coordinates (^ ^ ^) relative to facing.
+- Camera commands should be generated as a distinct animation type, synchronized to the same timeline.
+- Exact interpolation and command format remain to be designed.
+
+EXPORT
+- Generate copy-paste-ready Minecraft 1.21.1 commands and individual .mcfunction files.
+- Regenerate affected scene functions after editing; user manually places them into a datapack.
+- Datapack assembly is NOT required.
+- Additional command-generator types have not yet been specified.

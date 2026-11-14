@@ -1,0 +1,37 @@
+MINECRAFT DATAPACK ASSISTANT — ASSET LIBRARY AND UI
+Planning snapshot: November 14, 2026
+Status: Agreed design requirements, subject to implementation.
+
+LIBRARY NAVIGATION
+- Windows File Explorer-inspired folder navigation.
+- User manually creates and names folders (e.g. Ender, Fright, Enemies).
+- Every folder may contain nested folders (e.g. Ender > Zombie) and model chapters.
+- All subfolders ALWAYS appear at the top in a dedicated Folders area; that area is not collapsible.
+- Beneath folders are chapter-style sections, with a label and horizontal dividing line, in a single scrollable view.
+- Chapters start collapsed. Their default order is creation order.
+- Each chapter title has a three-dot menu leading to an organizer where chapters can be reordered by drag-and-drop. The display reflects the saved order.
+- Chapters contain visual model/pose thumbnails; filenames and model information are available without relying on names alone.
+- Organization is manual, not automatically inferred from item type or filenames.
+
+FOLDER ICONS
+- Each folder has a three-dot menu: Rename, Delete, Set Icon.
+- Set Icon lets the user select an existing display thumbnail belonging to a pose/model within that folder; no separate icon uploads or automatic folder-icon generation.
+- If the referenced pose or its thumbnail is removed or changed such that the icon is no longer valid, the folder returns to its default icon.
+- Folder delete/rename affects ONLY visual organization metadata, never the actual resource-pack directory.
+
+MODEL DATA
+- Each model entry references its original JSON, any PNG texture(s), source resource-pack namespace/path, Minecraft base item and custom model data if known.
+- The visual folder/chapter arrangement is independent of actual Minecraft item categories (wooden hoe, shovel, flower, etc.).
+- Models can share one texture sheet without PNG duplication.
+- Resolve model texture references using the original resource-pack structure.
+- 3D preview is desired for new-model review and visual browsing. Rendering may need to account for parent models, textures, and display transforms; failures should be shown clearly.
+- An existing model display image can be used for its thumbnail; folder icons are manually chosen.
+- A stable internal model ID is proposed so changing visual organization doesn't break scene references.
+
+RESOURCE PACK ACCESS
+- Desktop browser HTML app; folder access via user-granted folder picker, where supported.
+- One resource pack at a time in each window; different windows can use different packs.
+- Manual Refresh Library, not continuous polling.
+- Read-only scan: new models, model JSON, PNG textures, item model overrides/mappings, parent references.
+- Keep metadata separately; never modify pack files.
+- The same library may be used across projects, but each entry must retain its source pack identity.

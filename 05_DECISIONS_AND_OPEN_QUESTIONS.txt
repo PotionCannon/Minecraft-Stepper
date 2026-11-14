@@ -1,0 +1,35 @@
+MINECRAFT DATAPACK ASSISTANT — DECISION LOG
+Planning snapshot: November 14, 2026
+
+CONFIRMED
+- Desktop/computer-first HTML app.
+- Read-only resource-pack access; never manage or alter physical files/directories.
+- One resource pack per application window; File menu can open/switch pack.
+- Resource-pack paths respected internally for accurate model/texture resolution.
+- Global asset library shared across projects; projects have scenes.
+- Manual library organization: nested folders + chapter-like sections.
+- Folders always visible at top; chapters below, initially collapsed.
+- Chapter creation order by default, user can reorder via menu.
+- Folder menu: rename, delete, set icon using an existing model display thumbnail.
+- Invalid/deleted folder-icon source -> default folder icon.
+- Manual Refresh Library; guided per-model organizer for newly discovered files.
+- New model: 3D preview, rename, choose folder and chapter; default original filename + Unorganized.
+- Bulk apply same folder/chapter to remaining models.
+- Shared texture sheets; multiple JSON models may reference one PNG.
+- Timeline uses scoreboard 'global timeline' and can be started, paused, stopped.
+- Character movement is stop-motion; camera movement is smooth.
+- Output individual .mcfunction files and command-block-ready commands; not a complete datapack.
+
+PROPOSED, NOT FINALIZED
+- Project files saved as JSON.
+- Stable internal asset identifiers, thumbnail caching, lazy loading.
+- Separate app metadata storage and reconnection to selected resource pack.
+- Scene tick ranges, jumping to tick, restoring scene state.
+- Exact browser-based 3D preview engine and fallback.
+- Detailed import error handling and skip semantics.
+
+NEXT DESIGN DISCUSSION
+User wishes to work through multiple types of command generation, one by one. First generator type has not yet been selected.
+
+COMPATIBILITY NOTE
+Commands must target Minecraft Java Edition 1.21.1, including integer custom_model_data item-component syntax.
